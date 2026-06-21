@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bio by Gauri - Student Notes</title>
+    <style>
+        /* General Website Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f9f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: #2ecc71; /* A nice biology-themed green */
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+        header p {
+            margin: 10px 0 0 0;
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #2ecc71;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        /* Upload Form Styling */
+        .upload-section {
+            background-color: #fdfdfd;
+            padding: 20px;
+            border: 1px dashed #bdc3c7;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+        }
+        input[type="text"], input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; /* Ensures padding doesn't affect width */
+        }
+        button {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #219150;
+        }
+
+        /* Notes List Styling */
+        .note-card {
+            background: #eafaf1;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 6px solid #2ecc71;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+        .note-card:hover {
+            transform: translateX(5px);
+        }
+        .note-info strong {
+            font-size: 18px;
+            color: #2c3e50;
+        }
+        .note-info p {
+            margin: 5px 0 0 0;
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+        .download-btn {
+            background-color: #3498db;
+            text-decoration: none;
+            padding: 10px 20px;
+            color: white;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .download-btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Bio by Gauri 🧬</h1>
+        <p>Official Portal for Biology Notes & Assignments</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="upload-section">
+            <h2>Upload New Notes</h2>
+            <form action="#" method="POST" enctype="multipart/form-data">
+                <label for="topic">Topic / Chapter Name:</label>
+                <input type="text" id="topic" name="topic" placeholder="e.g., Cell Structure and Functions" required>
+
+                <label for="noteFile">Select File (PDF, DOCX):</label>
+                <input type="file" id="noteFile" name="noteFile" accept=".pdf, .docx, .ppt" required>
+
+                <button type="submit">Upload Notes</button>
+            </form>
+        </div>
+
+        <div class="notes-section">
+            <h2>Available Notes</h2>
+            
+            <div class="note-card">
+                <div class="note-info">
+                    <strong>Chapter 1: The Fundamental Unit of Life</strong>
+                    <p>Uploaded: June 21, 2026 • PDF Document</p>
+                </div>
+                <a href="#" class="download-btn">Download</a>
+            </div>
+
+            <div class="note-card">
+                <div class="note-info">
+                    <strong>Chapter 2: Nutrition in Plants</strong>
+                    <p>Uploaded: June 15, 2026 • Word Document</p>
+                </div>
+                <a href="#" class="download-btn">Download</a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
