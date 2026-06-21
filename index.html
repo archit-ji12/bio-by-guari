@@ -3,170 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bio by Gauri - Student Notes</title>
+    <title>Bio by Gauri - Portal Login</title>
     <style>
-        /* General Website Styling */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f9f5;
+            background-color: #eafaf1; 
             margin: 0;
-            padding: 0;
-            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
-
-        /* Header Styling */
-        header {
-            background-color: #2ecc71; /* A nice biology-themed green */
-            color: white;
-            padding: 30px 20px;
+        .portal-box {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 90%;
         }
-        header h1 {
-            margin: 0;
+        h1 {
+            color: #2ecc71;
+            margin-top: 0;
             font-size: 32px;
         }
-        header p {
-            margin: 10px 0 0 0;
-            font-size: 18px;
-            opacity: 0.9;
+        p {
+            color: #7f8c8d;
+            margin-bottom: 30px;
         }
-
-        /* Main Container */
-        .container {
-            max-width: 800px;
-            margin: 30px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        h2 {
-            color: #2c3e50;
-            border-bottom: 2px solid #2ecc71;
-            padding-bottom: 10px;
-            margin-top: 0;
-        }
-
-        /* Upload Form Styling */
-        .upload-section {
-            background-color: #fdfdfd;
-            padding: 20px;
-            border: 1px dashed #bdc3c7;
-            border-radius: 8px;
-            margin-bottom: 40px;
-        }
-        label {
-            font-weight: bold;
+        .role-btn {
             display: block;
-            margin-top: 15px;
+            width: 100%;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
         }
-        input[type="text"], input[type="file"] {
+        .student-btn {
+            background-color: #3498db;
+            color: white;
+        }
+        .student-btn:hover { background-color: #2980b9; transform: scale(1.02); }
+        
+        .teacher-btn {
+            background-color: #2c3e50;
+            color: white;
+        }
+        .teacher-btn:hover { background-color: #1a252f; transform: scale(1.02); }
+
+        #login-section {
+            display: none;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 2px dashed #bdc3c7;
+        }
+        input {
             width: 100%;
             padding: 12px;
-            margin-top: 8px;
+            margin: 8px 0;
             border: 1px solid #ccc;
             border-radius: 5px;
-            box-sizing: border-box; /* Ensures padding doesn't affect width */
+            box-sizing: border-box;
         }
-        button {
-            background-color: #27ae60;
+        .login-submit {
+            background-color: #2ecc71;
             color: white;
             border: none;
-            padding: 12px 25px;
-            margin-top: 20px;
+            padding: 12px;
+            width: 100%;
+            border-radius: 5px;
+            font-weight: bold;
             cursor: pointer;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: bold;
-            transition: background-color 0.3s;
+            margin-top: 10px;
         }
-        button:hover {
-            background-color: #219150;
-        }
-
-        /* Notes List Styling */
-        .note-card {
-            background: #eafaf1;
-            padding: 20px;
-            margin: 15px 0;
-            border-left: 6px solid #2ecc71;
-            border-radius: 6px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: transform 0.2s;
-        }
-        .note-card:hover {
-            transform: translateX(5px);
-        }
-        .note-info strong {
-            font-size: 18px;
-            color: #2c3e50;
-        }
-        .note-info p {
-            margin: 5px 0 0 0;
-            font-size: 14px;
-            color: #7f8c8d;
-        }
-        .download-btn {
-            background-color: #3498db;
-            text-decoration: none;
-            padding: 10px 20px;
-            color: white;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        .download-btn:hover {
-            background-color: #2980b9;
-        }
+        .login-submit:hover { background-color: #27ae60; }
+        .error-msg { color: #e74c3c; font-size: 14px; display: none; margin-top: 10px;}
     </style>
 </head>
 <body>
 
-    <header>
+    <div class="portal-box">
         <h1>Bio by Gauri 🧬</h1>
-        <p>Official Portal for Biology Notes & Assignments</p>
-    </header>
+        <p>Welcome to the official portal. Please select your role to continue.</p>
 
-    <div class="container">
-        
-        <div class="upload-section">
-            <h2>Upload New Notes</h2>
-            <form action="#" method="POST" enctype="multipart/form-data">
-                <label for="topic">Topic / Chapter Name:</label>
-                <input type="text" id="topic" name="topic" placeholder="e.g., Cell Structure and Functions" required>
+        <button class="role-btn student-btn" onclick="goToStudent()">👩‍🎓 I am a Student</button>
+        <button class="role-btn teacher-btn" onclick="showLogin()">👩‍🏫 I am a Teacher</button>
 
-                <label for="noteFile">Select File (PDF, DOCX):</label>
-                <input type="file" id="noteFile" name="noteFile" accept=".pdf, .docx, .ppt" required>
-
-                <button type="submit">Upload Notes</button>
-            </form>
-        </div>
-
-        <div class="notes-section">
-            <h2>Available Notes</h2>
-            
-            <div class="note-card">
-                <div class="note-info">
-                    <strong>Chapter 1: The Fundamental Unit of Life</strong>
-                    <p>Uploaded: June 21, 2026 • PDF Document</p>
-                </div>
-                <a href="#" class="download-btn">Download</a>
-            </div>
-
-            <div class="note-card">
-                <div class="note-info">
-                    <strong>Chapter 2: Nutrition in Plants</strong>
-                    <p>Uploaded: June 15, 2026 • Word Document</p>
-                </div>
-                <a href="#" class="download-btn">Download</a>
-            </div>
-
+        <div id="login-section">
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button class="login-submit" onclick="checkPassword()">Login</button>
+            <div id="error-message" class="error-msg">Incorrect username or password!</div>
         </div>
     </div>
+
+    <script>
+        function goToStudent() {
+            window.location.href = "student.html"; 
+        }
+
+        function showLogin() {
+            document.getElementById('login-section').style.display = 'block';
+        }
+
+        function checkPassword() {
+            const user = document.getElementById('username').value.toLowerCase();
+            const pass = document.getElementById('password').value;
+            const errorMsg = document.getElementById('error-message');
+
+            // Set username and password here
+            if (user === "gauri" && pass === "bio123") {
+                // Link to edit the Google Sheet
+                window.location.href = "https://docs.google.com/spreadsheets/d/1vQUSbh8fPH6J-te3VYVeX2eg_sN9adn0mxyxmfYrVWfV0U6bRupJ0bmy_uKtNmGTzzLKQi0U4etkAje/edit"; 
+            } else {
+                errorMsg.style.display = "block";
+            }
+        }
+    </script>
 
 </body>
 </html>
