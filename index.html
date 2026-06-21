@@ -103,92 +103,25 @@
     </div>
 
     <script>
-        // 1. Student Button Logic
         function goToStudent() {
             window.location.href = "student.html"; 
         }
 
-        // 2. Show Login Box
         function showLogin() {
             document.getElementById('login-section').style.display = 'block';
         }
 
-        // 3. The New Teacher Dashboard
         function checkPassword() {
             const user = document.getElementById('username').value.toLowerCase();
             const pass = document.getElementById('password').value;
             const errorMsg = document.getElementById('error-message');
 
             if (user === "gauri" && pass === "bio123") {
-                // Transform the page into the Upload Dashboard
-                document.querySelector('.portal-box').innerHTML = `
-                    <h2>☁️ Teacher Upload Dashboard</h2>
-                    <p>Upload files directly to the cloud database.</p>
-                    
-                    <input type="text" id="upload-topic" placeholder="Chapter Name (e.g., Cell Biology)" style="width: 100%; padding: 10px; margin-bottom: 15px;">
-                    <input type="file" id="upload-file" accept=".pdf, .docx" style="width: 100%; margin-bottom: 15px;">
-                    
-                    <button onclick="uploadToCloud()" style="background: #2ecc71; color: white; padding: 12px 20px; border: none; border-radius: 5px; cursor: pointer; width: 100%; font-weight: bold;">Upload to Cloud</button>
-                    <p id="status-message" style="margin-top: 15px; font-weight: bold;"></p>
-                `;
+                // This now sends the teacher directly to the new private dashboard
+                window.location.href = "teacher.html"; 
             } else {
                 errorMsg.style.display = "block";
             }
-        }
-
-        // 4. The Magic Cloud Upload Function
-        function uploadToCloud() {
-            const topic = document.getElementById('upload-topic').value;
-            const fileInput = document.getElementById('upload-file');
-            const statusText = document.getElementById('status-message');
-            
-            if (!topic || fileInput.files.length === 0) {
-                statusText.style.color = "red";
-                statusText.innerText = "Please provide a topic and select a file!";
-                return;
-            }
-
-            const file = fileInput.files[0];
-            statusText.style.color = "#f39c12";
-            statusText.innerText = "Uploading to Cloud... Please wait.";
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const base64Data = e.target.result.split(',')[1];
-                
-                const payload = {
-                    topic: topic,
-                    filename: file.name,
-                    mimeType: file.type,
-                    base64: base64Data
-                };
-
-                // YOUR LIVE GOOGLE APPS SCRIPT API LINK
-                const cloudAPI = "https://script.google.com/macros/s/AKfycbwVFUwHE1JHq0pLyChA8ClI9rWzJEKWPBRyWA7ZqpFxvtVJAbcVPCyGg1gAV7vrddVe/exec";
-
-                fetch(cloudAPI, {
-                    method: "POST",
-                    body: JSON.stringify(payload)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if(data.status === "success") {
-                        statusText.style.color = "green";
-                        statusText.innerText = "✅ Upload Complete! Students can now see it on their portal.";
-                        document.getElementById('upload-topic').value = ""; 
-                        document.getElementById('upload-file').value = "";
-                    } else {
-                        statusText.style.color = "red";
-                        statusText.innerText = "Error: " + data.message;
-                    }
-                })
-                .catch(error => {
-                    statusText.style.color = "red";
-                    statusText.innerText = "Connection Error. Try again.";
-                });
-            };
-            
-            reader.readAsDataURL(file);
         }
     </script>
 
