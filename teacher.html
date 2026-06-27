@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #2c3e50; /* Dark professional background for the teacher */
+            background-color: #2c3e50; 
             color: #ecf0f1;
             margin: 0;
             padding: 40px 20px;
@@ -104,10 +104,9 @@
             const fileInput = document.getElementById('upload-file');
             const statusBox = document.getElementById('status-message');
             
-            // Check if user forgot to fill something out
             if (!topic || fileInput.files.length === 0) {
                 statusBox.style.display = "block";
-                statusBox.style.backgroundColor = "#e74c3c"; // Red
+                statusBox.style.backgroundColor = "#e74c3c"; 
                 statusBox.style.color = "white";
                 statusBox.innerText = "⚠️ Please provide a topic and select a file!";
                 return;
@@ -115,13 +114,11 @@
 
             const file = fileInput.files[0];
             
-            // Show loading message
             statusBox.style.display = "block";
-            statusBox.style.backgroundColor = "#f39c12"; // Orange
+            statusBox.style.backgroundColor = "#f39c12"; 
             statusBox.style.color = "white";
             statusBox.innerText = "⏳ Uploading to Cloud... Please wait.";
 
-            // Read the file and convert it into code
             const reader = new FileReader();
             reader.onload = function(e) {
                 const base64Data = e.target.result.split(',')[1];
@@ -133,10 +130,9 @@
                     base64: base64Data
                 };
 
-                // YOUR LIVE GOOGLE APPS SCRIPT API LINK
-                const cloudAPI = "https://script.google.com/macros/s/AKfycbwVFUwHE1JHq0pLyChA8ClI9rWzJEKWPBRyWA7ZqpFxvtVJAbcVPCyGg1gAV7vrddVe/exec";
+                // YOUR NEW, WORKING GOOGLE APPS SCRIPT API LINK!
+                const cloudAPI = "https://script.google.com/macros/s/AKfycbzRQp5QFKI5V4zcHmai7IRg2eO061X5EBx9a8unzRiOZYg29adKq0ZR21rXMTnd8_yG/exec";
 
-                // Send the file to Google Drive and Google Sheets automatically
                 fetch(cloudAPI, {
                     method: "POST",
                     body: JSON.stringify(payload)
@@ -144,17 +140,17 @@
                 .then(response => response.json())
                 .then(data => {
                     if(data.status === "success") {
-                        statusBox.style.backgroundColor = "#2ecc71"; // Green
+                        statusBox.style.backgroundColor = "#2ecc71"; 
                         statusBox.innerText = "✅ Upload Complete! Students can now see it on their portal.";
-                        document.getElementById('upload-topic').value = ""; // Clear the box
-                        document.getElementById('upload-file').value = ""; // Clear the file
+                        document.getElementById('upload-topic').value = ""; 
+                        document.getElementById('upload-file').value = ""; 
                     } else {
-                        statusBox.style.backgroundColor = "#e74c3c"; // Red
+                        statusBox.style.backgroundColor = "#e74c3c"; 
                         statusBox.innerText = "❌ Error: " + data.message;
                     }
                 })
                 .catch(error => {
-                    statusBox.style.backgroundColor = "#e74c3c"; // Red
+                    statusBox.style.backgroundColor = "#e74c3c"; 
                     statusBox.innerText = "❌ Connection Error. Try again.";
                 });
             };
